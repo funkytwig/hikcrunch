@@ -17,10 +17,6 @@ function run_cmd() {
 	fi
 }
 
-SOURCE_BASE=/mnt/ext_backup_hub/CCTV-TG20
-TARGET_BASE=/tribe/data/cctv/from_nvr_headers_rewrittern
-TEMP_FILE=/tribe/data/cctv/temp.mp4
-
 if [ -f $TEMP_FILE ]; then
 	run_cmd "rm $TEMP_FILE"
 fi
