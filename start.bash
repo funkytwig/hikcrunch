@@ -1,18 +1,18 @@
 # start.bash
 #
 
-if [ -z "$path_to_store_backups" ]; then
-  error "Backup target directory not set"
+if [ -z "$SOURCE_BASE" ]; then
+  error "SOURCE_BASE not set"
   exit 1
 fi
 
-if [ -z "$what_to_backup" ]; then
-  error "Backup source directory not set"
+if [ -z "$TARGET_BASE" ]; then
+  error "TARGET_BASE not set"
   exit 1
 fi
 
 if [ -f $lockfile ]; then
-  error "Another script is running ($lockfile exists), exiting"
+  log "Another script is running ($lockfile exists), exiting"
   exit 1;
 fi 
 

@@ -12,12 +12,12 @@ for dir in `find $SOURCE_BASE -name "ch*" -type d`
 do
 	for file in `find $dir -name "ch*"`
 	do
-		basename=`basename $file`
+		base=`basename $file`
 		dirname=`dirname $file`
 		top_dir="${dirname##*/}"
 		ext="${file##*.}"
-		chan="${basename%_*}"
-		filename_nocam="${basename#*_}"
+		chan="${base%_*}"
+		filename_nocam="${base#*_}"
 		year=${filename_nocam:0:4}
 		month=${filename_nocam:4:2}
 		day=${filename_nocam:6:2}
@@ -45,7 +45,12 @@ do
         	        	elif [ "$ext" = "txt" ]; then
 					run_cmd "cp $file $new_pathname" 
 	        		fi
+			else
+				log "Skipping $new_pathname, file exists"
 			fi
 		fi
 	done
 done
+
+source end.bash
+

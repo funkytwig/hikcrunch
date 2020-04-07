@@ -11,13 +11,16 @@
 # 0.5   Initial version
 
 function log {
-  log_text="$logstamp $basename $1"
+  logstamp=`date +%D_%R`
+  log_text="$logstamp $1"
 
   if [ $interactive -eq 1 ]; then
     echo $log_text
   fi
 
-  echo "$logstamp $basename($$) $1" >> $logfile
+  if [ $interactive -eq 1 ]; then
+    echo "$logstamp $1" >> $logfile
+  fi
 }
 
 function log_file {
@@ -42,7 +45,7 @@ function run_cmd {
 
   if [ $ret -ne 0 ]; then
     log "ERROR : Return code $ret"
-    exit 1
+    exit 1;
     rm $lockfile
   fi
 

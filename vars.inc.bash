@@ -15,13 +15,14 @@ SOURCE_BASE=/mnt/ext_backup_hub/CCTV-TG20
 TARGET_BASE=/tribe/data/cctv/from_nvr_headers_rewrittern
 TEMP_FILE=/tribe/data/cctv/temp.mp4
 
+interactive=1
+
 # You should not need to change anything below this line
 
-interactive=0
 user=`id -u -n`
 logstamp=`date +%D_%R`
-logfile=/var/log/fhickcrunch.$user.log
 basename=`basename $0 .bash`
-lockfile=/tmp/${user}_${backup_name}_lock.funkybackup
+lockfile=/tmp/${user}_hickcrunch_lock.funkybackup
+logfile=/var/log/hickcrunch.$user.log
 
 set +f
