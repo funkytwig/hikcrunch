@@ -4,19 +4,6 @@ source vars.inc.bash
 source function.inc.bash
 source start.bash
 
-function run_cmd() {
-	cmd=$1
-
-	echo $cmd
-
-	ret=$?
-
-	if  [ $ret -ne 0 ]; then
-		echo "$cmd exited with error code $ret"
-		exit 1
-	fi
-}
-
 if [ -f $TEMP_FILE ]; then
 	run_cmd "rm $TEMP_FILE"
 fi
