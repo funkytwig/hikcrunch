@@ -41,8 +41,27 @@ function run_cmd {
   fi
 
   if [ $ret -ne 0 ]; then
-    log "$ret : $1"
+    log "ERROR : Return code $ret"
+    exit 1
   fi
 
   return $ret
 }
+
+
+
+
+function run_cmd() {
+	cmd=$1
+
+	echo $cmd
+
+	ret=$?
+
+	if  [ $ret -ne 0 ]; then
+		echo "$cmd exited with error code $ret"
+		exit 1
+    rm $lockfile
+	fi
+}
+
