@@ -1,5 +1,9 @@
 #!/bin/bash 
 
+source vars.inc.bash
+source function.inc.bash
+source start.bash
+
 function run_cmd() {
 	cmd=$1
 
