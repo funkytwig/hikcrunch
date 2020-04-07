@@ -11,6 +11,9 @@
 
 set -f
 
+SOURCE_BASE=/mnt/ext_backup_hub/CCTV-TG20
+TARGET_BASE=/tribe/data/cctv/from_nvr_headers_rewrittern
+TEMP_FILE=/tribe/data/cctv/temp.mp4
 
 # You should not need to change anything below this line
 
