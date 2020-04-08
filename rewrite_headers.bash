@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 source vars.inc.bash
 source function.inc.bash
@@ -10,7 +10,7 @@ fi
 
 for dir in `find $SOURCE_BASE -name "ch*" -type d`
 do
-	for file in `find $dir -name "ch*"`
+	for file in `find $dir -name "ch*" -type f`
 	do
 		base=`basename $file`
 		dirname=`dirname $file`
@@ -40,8 +40,17 @@ do
 			if [ ! -f $new_pathname ]; then  # skip if file already copies, used so we can rerun if fscript fails
 
 				if [ "$ext" = "mp4" ]; then
-					run_cmd "ffmpeg -loglevel warning -i $file -flags +global_header -vcodec copy -acodec copy $TEMP_FILE" 
-					run_cmd "mv $TEMP_FILE $new_pathname" 
+
+					matches=`grep -c "$base" skip.dat`
+
+					if [ $matches -eq 0 ]; then
+
+						run_cmd "ffmpeg -loglevel warning -i $file -flags +global_header -vcodec copy -acodec libmp3lame -ar 44100 -b:a 128k $TEMP_FILE" 
+						run_cmd "mv $TEMP_FILE $new_pathname" 
+					else
+						log "$base in skip.dat so skipping"
+					fi
+
         	        	elif [ "$ext" = "txt" ]; then
 					run_cmd "cp $file $new_pathname" 
 	        		fi
